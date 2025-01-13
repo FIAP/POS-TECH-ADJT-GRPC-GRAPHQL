@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package veiculo;
+
+option java_multiple_files = true;
+option java_package = "dev.ghlima.veiculo";
+
+
+// Definição do serviço de consulta de veículos
+service VeiculoService {
+  // Consulta informações do veículo por placa
+  rpc ConsultarVeiculo (VeiculoRequest) returns (VeiculoResponse);
+}
+
+// Mensagem para a requisição
+message VeiculoRequest {
+  string placa = 1; // Placa do veículo a ser consultado
+}
+
+// Mensagem para a resposta
+message VeiculoResponse {
+  string placa = 1;
+  string modelo = 2;
+  string marca = 3;
+  int32 ano = 4;
+  bool disponivel = 5; // Indica se o veículo está disponível
+}

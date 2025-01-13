@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package reservation;
+
+option java_multiple_files = true;
+option java_package = "dev.ghlima.locatech.reservation";
+
+enum ReservationStatusProto {
+  UNKNOWN = 0;
+  CONFIRMED = 1;
+  PENDING = 2;
+  CANCELLED = 3;
+}
+
+message ReservationProto {
+  int64 reservation_id = 1;
+  int64 vehicle_id = 2;
+  int64 user_id = 3;
+  string start_date = 4;
+  string end_date = 5;
+  ReservationStatusProto status = 6;
+}
+
+message CreateReservationRequest {
+  int64 vehicle_id = 1;
+  int64 user_id = 2;
+  string start_date = 3;
+  string end_date = 4;
+}
+
+message CreateReservationResponse {
+  int64 reservation_id = 1;
+  string message = 2;
+}
+
+message GetReservationRequest {
+  int64 reservation_id = 1;
+}
+
+message GetReservationResponse {
+  ReservationProto reservation = 1;
+}
+
+message CompleteReservationRequest {
+  int64 reservation_id = 1;
+}
+
+message CompleteReservationResponse {
+  string message = 1;
+  int64 total_days = 2;
+}
+
+message GetReservationByVehicleIdRequest {
+  int64 vehicle_id = 1;
+}
+
+message GetReservationByVehicleIdResponse {
+  ReservationProto reservation = 1;
+}
+
+service ReservationService {
+  rpc CreateReservation(CreateReservationRequest) returns (CreateReservationResponse);
+  rpc GetReservation(GetReservationRequest) returns (GetReservationResponse);
+  rpc CompleteReservation(CompleteReservationRequest) returns (CompleteReservationResponse);
+  rpc GetReservationByVehicleId(GetReservationByVehicleIdRequest) returns (GetReservationByVehicleIdResponse);
+}

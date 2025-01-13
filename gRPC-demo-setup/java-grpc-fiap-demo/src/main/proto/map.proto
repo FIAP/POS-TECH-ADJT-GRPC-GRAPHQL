@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package map;
+
+option java_multiple_files = true;
+option java_package = "dev.ghlima.demos.map";
+
+
+message Veiculo {
+  string placa = 1;
+  string modelo = 2;
+  string marca = 3;
+  int32 ano = 4;
+}
+
+
+message FrotaComMap {
+  string nome = 1;
+  map<string, Veiculo> veiculos = 2;
+}
+

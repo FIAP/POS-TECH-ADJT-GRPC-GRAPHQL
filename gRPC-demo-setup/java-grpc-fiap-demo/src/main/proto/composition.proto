@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package composition;
+
+option java_multiple_files = true;
+option java_package = "dev.ghlima.demos.composition";
+
+message Endereco {
+  string rua = 1;
+  string bairro = 2;
+  string cidade = 3;
+  string estado = 4;
+  string cep = 5;
+}
+
+message Pessoa {
+  string nome = 2;
+  string cpf = 3;
+  string rg = 4;
+  Endereco endereco = 5;
+}

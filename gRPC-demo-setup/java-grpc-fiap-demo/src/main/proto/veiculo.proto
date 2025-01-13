@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package veiculo;
+
+option  java_multiple_files = true;
+option java_package = "dev.ghlima.veiculo";
+
+message Veiculo {
+  int32 id = 1;
+  string marca = 2;
+  string modelo = 3;
+  int32 ano = 4;
+}

@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package oneof;
+
+option java_multiple_files = true;
+option java_package = "dev.ghlima.demos.oneof";
+
+
+enum TipoCombustivel {
+  DESCONHECIDO = 0;
+  GASOLINA = 1;
+  DIESEL = 2;
+  ELETRICO = 3;
+  FLEX = 4;
+}
+
+
+message DetalhesVeiculo {
+  oneof detalhes {
+    string cargaMaxima = 1;         // Para caminhões
+    string capacidadePassageiros = 2; // Para ônibus
+    string autonomiaBateria = 3;    // Para veículos elétricos
+  }
+}
+
+
+message Veiculo {
+  string placa = 1;
+  string modelo = 2;
+  string marca = 3;
+  int32 ano = 4;
+  TipoCombustivel combustivel = 5;
+  DetalhesVeiculo detalhes = 6;
+}

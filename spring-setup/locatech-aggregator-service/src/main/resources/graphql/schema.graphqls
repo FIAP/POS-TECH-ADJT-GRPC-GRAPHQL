@@ -1,0 +1,72 @@
+enum ReservationStatus {
+    UNKNOWN
+    CONFIRMED
+    PENDING
+    CANCELLED
+}
+
+
+type Vehicle {
+    id: ID!
+    make: String!
+    model: String!
+    category: String!
+    isAvailable: Boolean!
+}
+
+type Reservation {
+    reservationId: ID!
+    vehicleId: ID!
+    userId: ID!
+    startDate: String!
+    endDate: String!
+    status: ReservationStatus!
+}
+
+type AddVehicleResponse {
+    vehicleId: ID!
+    message: String!
+}
+
+type CreateReservationResponse {
+    reservationId: ID!
+    message: String!
+}
+
+type CompleteReservationResponse {
+    message: String!
+    totalDays: Int!
+}
+
+type VehicleAndReservationResponse {
+    vehicle: Vehicle
+    reservation: Reservation
+}
+
+
+input VehicleInput {
+    make: String!
+    model: String!
+    category: String!
+    isAvailable: Boolean!
+}
+
+input CreateReservationInput {
+    vehicleId: ID!
+    userId: ID!
+    startDate: String!
+    endDate: String!
+}
+
+extend type Query {
+    listAvailableVehicles: [Vehicle!]!
+    getVehicleById(id: ID!): Vehicle
+    getReservationByVehicleId(vehicleId: ID!): Reservation
+    getVehicleAndReservationById(vehicleId: ID!): VehicleAndReservationResponse!
+}
+
+extend type Mutation {
+    addVehicle(vehicle: VehicleInput!): AddVehicleResponse!
+    createReservation(reservation: CreateReservationInput!): CreateReservationResponse!
+    completeReservation(reservationId: ID!): CompleteReservationResponse!
+}

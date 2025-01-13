@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package enums;
+
+option java_multiple_files = true;
+option java_package = "dev.ghlima.demos.enums";
+
+enum TipoVeiculo {
+  DESCONHECIDO = 0;
+  CARRO = 1;
+  MOTO = 2;
+  CAMINHAO = 3;
+  ONIBUS = 4;
+}
+
+message Veiculo {
+  string placa = 1;
+  string modelo = 2;
+  string marca = 3;
+  int32 ano = 4;
+  TipoVeiculo tipo = 5;
+}

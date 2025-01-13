@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package catalog;
+
+option java_multiple_files = true;
+option java_package = "dev.ghlima.locatech.catalog";
+
+message VehicleProto {
+  int64 id = 1;
+  string make = 2;
+  string model = 3;
+  string category = 4;
+  bool is_available = 5;
+}
+
+message AddVehicleRequest {
+  VehicleProto vehicle = 1;
+}
+
+message AddVehicleResponse {
+  int64 vehicle_id = 1;
+  string message = 2;
+}
+
+
+message ListAvailableVehiclesRequest {}
+
+message ListAvailableVehiclesResponse {
+  repeated VehicleProto vehicles = 1;
+}
+
+message GetVehicleByIdRequest {
+  int64 id = 1;
+}
+
+message GetVehicleByIdResponse {
+  VehicleProto vehicle = 1;
+}
+
+service CatalogService {
+  rpc AddVehicle(AddVehicleRequest) returns (AddVehicleResponse);
+  rpc ListAvailableVehicles(ListAvailableVehiclesRequest) returns (ListAvailableVehiclesResponse);
+  rpc GetVehicleById(GetVehicleByIdRequest) returns (GetVehicleByIdResponse);
+}

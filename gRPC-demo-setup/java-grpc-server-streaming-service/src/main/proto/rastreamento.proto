@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package rastreamento;
+
+option java_multiple_files = true;
+option java_package = "dev.ghlima.rastreamento";
+
+
+// Serviço de rastreamento de veículos
+service RastreamentoService {
+  // Inicia o rastreamento de localização do veículo
+  rpc IniciarRastreamento (RastreamentoRequest) returns (stream LocalizacaoResponse);
+}
+
+// Mensagem para a requisição de rastreamento
+message RastreamentoRequest {
+  string placa = 1; // Placa do veículo a ser rastreado
+}
+
+// Mensagem para a resposta de cada atualização de localização
+message LocalizacaoResponse {
+  string placa = 1;
+  double latitude = 2; // Coordenada de latitude
+  double longitude = 3; // Coordenada de longitude
+  double velocidade = 4; // Velocidade do veículo em km/h
+  bool entregue = 5; // Indica se o veículo chegou ao destino
+}
