@@ -61,7 +61,7 @@ input CreateReservationInput {
 extend type Query {
     listAvailableVehicles: [Vehicle!]!
     getVehicleById(id: ID!): Vehicle
-    getReservationByVehicleId(vehicleId: ID!): Reservation
+    getReservationById(reservationId: ID!): Reservation
     getVehicleAndReservationById(vehicleId: ID!): VehicleAndReservationResponse!
 }
 
